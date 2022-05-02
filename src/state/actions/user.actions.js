@@ -25,7 +25,7 @@ export const fetchProfile = createAsyncThunk(
 
             const { data } = await axios.get(baseUrl + handle)
             const repos = await axios.get(`${baseUrl}${handle}/repos?per_page=${params.count}&sort=${params.sort}`)
-
+       
             return { data, repos: repos.data }
         } catch (error) {
             console.log(error.message)

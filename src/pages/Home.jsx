@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import moment from 'moment'
 import { FiGithub, FiUsers } from 'react-icons/fi'
 import { AiOutlineBook, AiOutlineMail, AiOutlineFork, AiOutlineLink, AiOutlineStar, AiOutlineTwitter } from 'react-icons/ai'
-import { BiCube } from 'react-icons/bi'
+import { BiCube, BiDownArrow } from 'react-icons/bi'
 import { BsStack } from 'react-icons/bs'
 import { GoLocation } from 'react-icons/go'
 import { RiBookOpenLine, RiScales3Line } from 'react-icons/ri'
@@ -54,7 +54,7 @@ const Home = () => {
                                     <BiCube /> Packages
                                 </div>
                                 <div className="tabs__stars">
-                                    <AiOutlineStar /> Stars
+                                    <AiOutlineStar /> Stars     
                                 </div>
                             </div>
                         </div>
@@ -143,39 +143,55 @@ const Home = () => {
                                             key={repo.id}
                                             className="repo__card"
                                         >
-                                            <h4 className='repo__title'>{repo.name} <span>{repo.private ? 'Private' : 'Public'}</span> </h4>
-                                            {repo.description && (<p className="repo__description">{repo.description}</p>)}
+                                            <div className="repo__card-left">
+                                                <h4 className='repo__title'>
+                                                    <a href={`https://github.com/${user.user_name}/${repo.name}`} target={'_blank'}>
+                                                        {repo.name}
+                                                    </a>
+                                                    <span>{repo.private ? 'Private' : 'Public'}</span>
+                                                </h4>
+                                                {repo.description && (<p className="repo__description">{repo.description}</p>)}
 
-                                            {repo?.topics?.length > 0 && (
-                                                <div className="repo__topics">
-                                                    {repo?.topics?.length > 0 && repo.topics.map((item, index) => (
-                                                        <a
-                                                            key={`${item}-${index}`}
-                                                            href={`https://www.github.com/topics/${item}`}
-                                                            target={'_blank'}
-                                                            className="topic"
-                                                        >
-                                                            {item}
-                                                        </a>
-                                                    ))}
+                                                {repo?.topics?.length > 0 && (
+                                                    <div className="repo__topics">
+                                                        {repo?.topics?.length > 0 && repo.topics.map((item, index) => (
+                                                            <a
+                                                                key={`${item}-${index}`}
+                                                                href={`https://www.github.com/topics/${item}`}
+                                                                target={'_blank'}
+                                                                className="topic"
+                                                            >
+                                                                {item}
+                                                            </a>
+                                                        ))}
+                                                    </div>
+                                                )}
+
+                                                <div className="repo__info">
+                                                    {repo.language && (<p className="repo__language">{repo.language}</p>)}
+                                                    {repo.forks > 0 && (
+                                                        <p className="repo__forks">
+                                                            <AiOutlineFork size={15} />
+                                                            {repo.forks}
+                                                        </p>
+                                                    )}
+                                                    {repo.license && (
+                                                        <p className="repo__license">
+                                                            <RiScales3Line size={15} />
+                                                            {repo.license.name}
+                                                        </p>
+                                                    )}
+                                                    <p className="repo__udated-at">Updated on {moment(repo.updated_at).format('Do MMM YYYY')}</p>
                                                 </div>
-                                            )}
+                                            </div>
 
-                                            <div className="repo__info">
-                                                {repo.language && (<p className="repo__language">{repo.language}</p>)}
-                                                {repo.forks > 0 && (
-                                                    <p className="repo__forks">
-                                                        <AiOutlineFork size={15}/>
-                                                        {repo.forks}
-                                                    </p>
-                                                )}
-                                                {repo.license && (
-                                                    <p className="repo__license">
-                                                        <RiScales3Line size={15}/>
-                                                        {repo.license.name}
-                                                    </p>
-                                                )}
-                                                <p className="repo__udated-at">Updated on {moment(repo.updated_at).format('Do MMM YYYY')}</p>
+                                            <div className="repo__card-right">
+                                                <div className="repo__star">
+                                                    <div className="star"><AiOutlineStar/> Star</div>
+                                                    <div className="icon">
+                                                        <BiDownArrow/>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     ))}

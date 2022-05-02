@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaGithubSquare } from 'react-icons/fa'
+import { FaGithubSquare, FaUserAlt } from 'react-icons/fa'
 
 import { useStateContext } from '../context'
 
@@ -11,7 +11,6 @@ const Navbar = () => {
             <a href="#" className="logo">OAUTH</a>
 
             <ul className='nav'>
-                <li><a href="#">About</a></li>
                 <li className={`nav__auth-link ${user && 'auth-active'}`}>
                     {!user ? (
                         <a
@@ -26,7 +25,7 @@ const Navbar = () => {
                             href="#"
                             onClick={userSignOut}
                         >
-                            <FaGithubSquare size={14} />
+                            <FaUserAlt size={14} />
                             Sign Out
                         </a>
                     )}
