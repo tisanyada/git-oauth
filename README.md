@@ -10,4 +10,4 @@ Github Oauth application that allows authenticated user to view few of his repos
 -   create a `.env` file in the root directory of the project and add
     - `VITE_APP_SUPABASE_APP_URL` = [supabase.io](https://app.supabase.io/) app-url
     - `VITE_APP_SUPABASE_APP_ID` = [supabase.io](https://app.supabase.io/) app-id
--   run _`npm run dev`_ to start the application
+-   run *`npm run dev`* to start the application
